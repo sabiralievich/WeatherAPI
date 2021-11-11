@@ -6,44 +6,37 @@ import okhttp3.Request;
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.PrimitiveIterator;
 
 public class GetWeather {
-    private static final String BASE_HOST = "dataservice.accuweather.com";
-    private static final String FORECAST = "forecasts";
-    private static final String API_VERSION = "v1";
-    private static final String FORECAST_TYPE = "daily";
-    private static final String FORECAST_PERIOD = "5day";
-
-    private static final String SAINT_PETERSBURG_KEY = "474212_PC";
-    private static final String API_KEY = "0d1tNZJPfzzT3qGokM18FGGxAUpt7hpj";
-
+    private static final String YANDEX_API_KEY = "05201440-baff-4d85-ab8e-ef55c380f464";
+    private static final String LON = "30.315877";
+    private static final String LAT = "59.939099";
+    private static final String LANG = "ru_RU";
+    private static final String HOST = "api.weather.yandex.ru";
+    private static final String API_VERSION = "v2";
+    private static final String SERVICE = "forecast";
+    // https://api.weather.yandex.ru/v2/forecast/
     public static void main(String[] args) throws IOException {
 
         OkHttpClient client = new OkHttpClient();
 
-        // Сегментированное построение URL
         HttpUrl url = new HttpUrl.Builder()
                 .scheme("http")
-                .host(BASE_HOST)
-                .addPathSegment(FORECAST)
+                .host(HOST)
                 .addPathSegment(API_VERSION)
-                .addPathSegment(FORECAST_TYPE)
-                .addPathSegment(FORECAST_PERIOD)
-                .addPathSegment(SAINT_PETERSBURG_KEY)
-                .addQueryParameter("apikey", API_KEY)
-                .addQueryParameter("language", "ru-ru")
-                .addQueryParameter("metric", "true")
+                .addPathSegment(SERVICE)
+                .addQueryParameter("lat", LAT)
+                .addQueryParameter("lon", LON)
+                .addQueryParameter("lang", LANG)
                 .build();
-
         System.out.println(url);
-
-        // При необходимости указать заголовки
-        Request requesthttp = new Request.Builder()
-                .addHeader("accept", "application/json")
+        Request requestHttp = new Request.Builder()
+                .addHeader("X-Yandex-API-Key", YANDEX_API_KEY)
                 .url(url)
                 .build();
 
-        String jsonResponse = Objects.requireNonNull(client.newCall(requesthttp).execute().body()).string();
+        String jsonResponse = Objects.requireNonNull(client.newCall(requestHttp).execute().body()).string();
         System.out.println(jsonResponse);
     }
 }
