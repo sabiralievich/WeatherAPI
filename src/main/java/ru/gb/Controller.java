@@ -9,6 +9,7 @@ import ru.gb.dto.Field;
 
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -16,12 +17,12 @@ import java.util.List;
 
 public class Controller {
 
-    public static void call(String city, String cnt) throws IOException, ParseException {
+    public static void call(String city, String cnt) throws IOException, ParseException, SQLException, ClassNotFoundException {
         WeatherRequest weatherRequest = new WeatherRequest();
         weatherRequest.requestFromServer(city, cnt);
         mapResponse(weatherRequest, cnt);
     }
-    public static void mapResponse(WeatherRequest weatherRequest, String cnt) throws JsonProcessingException, ParseException {
+    public static void mapResponse(WeatherRequest weatherRequest, String cnt) throws JsonProcessingException, ParseException, SQLException, ClassNotFoundException {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
@@ -34,7 +35,7 @@ public class Controller {
         printFields(weatherResponse, fields, cnt);
     }
 
-    public static void printFields(WeatherResponse weatherResponse, List<Field> fields, String cnt) throws ParseException {
+    public static void printFields(WeatherResponse weatherResponse, List<Field> fields, String cnt) throws ParseException, SQLException, ClassNotFoundException {
         int forecastPeriod = weatherResponse.getCnt();
         System.out.println("Погода в г. " + weatherResponse.getCity().getName() + " на " + forecastPeriod / 8 +" дней:");
 
@@ -49,14 +50,9 @@ public class Controller {
                 System.out.println(fields.get(j).getWeather()[j].getDescription());
             }
         }
-/*        for(Field f : fields) {
-            System.out.print(formatDate(f.getDate()) + " ");
-            System.out.print("Температура: " + Math.round(f.getMain().getTemp()) + " градусов Цельсия, ");
-            System.out.print("относительная влажность: " + f.getMain().getHumidity() + " мм. рт. ст., ");
-            for (int i = 0; i < f.getWeather().length; i++) {
-                System.out.println(f.getWeather()[i].getDescription());
-            }
-        }*/
+
+           Repository.performAddRecords(weatherResponse, fields);
+
     }
 
     private static String formatDate(String date) {
