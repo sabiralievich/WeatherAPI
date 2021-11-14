@@ -56,7 +56,7 @@ public class Repository {
         //statement.executeUpdate(sqlRequest);
         ResultSet resultSet = statement.executeQuery(sqlRequest);
 
-        System.out.printf("%-8s %-22s %-20s %-10s %-10s %-12s %s",
+        System.out.printf("%-8s %-18s %-13s %-10s %-12s %-12s %s",
                           "ID","DATE","CITY", "TEMP,°C", "FEELS,°C", "HUMIDITY", "DESCRIPTION" );
         System.out.println();
             while (resultSet.next()) {
