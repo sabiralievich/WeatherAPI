@@ -53,6 +53,33 @@ public class Repository {
 
     public static void performReadDB(String sqlRequest) throws SQLException, ClassNotFoundException {
         establishConnection();
-        statement.executeUpdate(sqlRequest);
+        //statement.executeUpdate(sqlRequest);
+        ResultSet resultSet = statement.executeQuery(sqlRequest);
+
+        System.out.printf("%-8s %-22s %-20s %-10s %-10s %-12s %s",
+                          "ID","DATE","CITY", "TEMP,°C", "FEELS,°C", "HUMIDITY", "DESCRIPTION" );
+        System.out.println();
+            while (resultSet.next()) {
+                System.out.printf("%-4d %-17s %-20s %-10s %-13s %-10d %s",
+                        resultSet.getInt(1),
+                        formatDate(resultSet.getString(2)),
+                        resultSet.getString(3),
+                        resultSet.getDouble(4),
+                        resultSet.getDouble(5),
+                        resultSet.getInt(6),
+                        resultSet.getString(7)
+                        );
+                System.out.println();
+            }
+
+    }
+
+    public static String formatDate(String date) {
+        long unixSeconds = Integer.parseInt(date);
+        Date dateF = new Date(unixSeconds*1000L);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        return sdf.format(dateF);
+        //  System.out.printf("%1$s %2$td %2$tB %2$tY", "Дата: ", new Date(unixSeconds*1000L));
+
     }
 }

@@ -55,7 +55,7 @@ public class Controller {
 
     }
 
-    private static String formatDate(String date) {
+    public static String formatDate(String date) {
         long unixSeconds = Integer.parseInt(date);
         Date dateF = new Date(unixSeconds*1000L);
         SimpleDateFormat sdf = new SimpleDateFormat("E MM.dd");
