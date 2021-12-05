@@ -16,14 +16,14 @@ public class Main {
     public static void initialDialog() throws IOException, ParseException, SQLException, ClassNotFoundException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        System.out.println("Для получения прогноза погоды введите 1, для вывода информации из БД введите 2 или введите q для выхода..");
+        System.out.println("Для получения прогноза погоды введите 1, или введите q для выхода..");
         String choice = reader.readLine();
         isExit(choice);
             if (choice.equals("1")) {
                 getForecast(reader);
-            } else if (choice.equals("2")) {
+            }/* else if (choice.equals("2")) {
                 getDB(reader);
-            } else initialDialog();
+            }*/ else initialDialog();
 
     }
 

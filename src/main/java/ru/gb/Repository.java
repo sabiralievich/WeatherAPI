@@ -48,7 +48,7 @@ public class Repository {
 
         preparedStatement.close();
         connection.close();
-        System.out.println("Данные занесены в БД!");
+//        System.out.println("Данные занесены в БД!");
     }
 
     public static void performReadDB(String sqlRequest) throws SQLException, ClassNotFoundException {
