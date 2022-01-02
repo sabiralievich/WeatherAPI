@@ -1,5 +1,5 @@
 # WeatherAPI
-## Simple program which gets weather forecast for spesified town for maximum 5 days
+## Simple program which gets weather forecast for specified town for maximum 5 days
 
 1. Run Main class.
 2. Input '1' when it asks you to make a choise.
