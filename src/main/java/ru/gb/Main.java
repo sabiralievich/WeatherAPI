@@ -1,7 +1,8 @@
 package ru.gb;
 
+import ru.gb.db.ReadWeatherDB;
+
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
@@ -19,11 +20,11 @@ public class Main {
         System.out.println("Для получения прогноза погоды введите 1, для получения информации из БД введите 2 или введите q для выхода..");
         String choice = reader.readLine();
         isExit(choice);
-            if (choice.equals("1")) {
-                getForecast(reader);
-            } else if (choice.equals("2")) {
-                getDB(reader);
-            } else initialDialog();
+        if (choice.equals("1")) {
+            getForecast(reader);
+        } else if (choice.equals("2")) {
+            getDB(reader);
+        } else initialDialog();
 
     }
 
@@ -46,10 +47,10 @@ public class Main {
         String cntString = reader.readLine();
         isExit(cntString);
         int cnt = Integer.parseInt(cntString) * 8;
-            cntString = String.valueOf(cnt);
-            Controller.call(city, cntString);
-            initialDialog();
-        }
+        cntString = String.valueOf(cnt);
+        Controller.call(city, cntString);
+        initialDialog();
+    }
 
 
     private static void isExit(String city) {

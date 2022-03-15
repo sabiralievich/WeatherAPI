@@ -1,4 +1,5 @@
-package ru.gb;
+package ru.gb.rest;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import ru.gb.dto.City;
 import ru.gb.dto.Field;
@@ -13,10 +14,10 @@ public class WeatherResponse {
     private int cnt;
 
 
-
     public WeatherResponse() {
 
     }
+
     public WeatherResponse(City name, Field[] list) {
         this.city = name;
         this.list = list;

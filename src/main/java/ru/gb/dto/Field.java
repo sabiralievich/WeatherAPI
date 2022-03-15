@@ -25,15 +25,14 @@ public class Field {
     private String date;
 
 
-
     public Field() {
 
     }
+
     public Field(General main, Weather[] weather) {
         this.main = main;
         this.weather = weather;
     }
-
 
 
     public String getDate() throws ParseException {

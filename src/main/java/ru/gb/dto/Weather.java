@@ -1,7 +1,6 @@
 package ru.gb.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import ru.gb.WeatherResponse;
 
 public class Weather {
     @JsonProperty("description")
@@ -10,6 +9,7 @@ public class Weather {
     public Weather() {
 
     }
+
     public Weather(String description) {
         this.description = description;
     }

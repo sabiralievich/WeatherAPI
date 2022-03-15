@@ -1,4 +1,4 @@
-package ru.gb;
+package ru.gb.db;
 
 import java.sql.SQLException;
 

@@ -2,6 +2,7 @@ package ru.gb.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class General {
     @JsonProperty("temp")
@@ -10,6 +11,7 @@ public class General {
     private int humidity;
     @JsonProperty("feels_like")
     private Double feelsLike;
+
     public General() {
 
     }
@@ -18,6 +20,7 @@ public class General {
         this.temp = temp;
         this.humidity = humidity;
     }
+
     public Double getFeelsLike() {
         return feelsLike;
     }
@@ -25,6 +28,7 @@ public class General {
     public void setFeelsLike(Double feelsLike) {
         this.feelsLike = feelsLike;
     }
+
     public Double getTemp() {
         return temp;
     }

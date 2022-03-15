@@ -1,4 +1,4 @@
-package ru.gb;
+package ru.gb.rest;
 
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
